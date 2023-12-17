@@ -5,22 +5,70 @@ export async function onRequest(context) {
     const rows = csvContent.trim().split('\n');
     const headers = rows[0].split(',').map((header) => header.trim());
     
-    const jsonData = [];
-    for (let i = 1; i < rows.length; i++) {
-      const data = rows[i].split(',');
-      const entry = {
-        name: data[0].trim(),
-        department: data[1].trim(),
-        salary: parseInt(data[2].trim()),
-        office: data[3].trim(),
-        isManager: data[4].trim(),
-        skills: data.slice(5).map((skill) => skill.trim()),
-      };
-      jsonData.push(entry);
+    // Create set of all departments
+    const departmentSet = new Set();
+    for (let i = 1; i < rows.length; i++)
+    {
+        departmentSet.add(rows[i].split(',')[1].trim());
     }
+    // Create Hashmap of Departments with Manager name
+    const departmentManager = new Map();
+    for (let i = 1; i < rows.length; i++)
+    {
+        const data = rows[i].split(',');
+        if(data[4].trim() === "TRUE")
+        {
+            departmentManager.set(data[1].trim(), data[0].trim());
+        }
+    }
+    // Create Hashmap of Departments with Employees
+    const departmentEmployees = new Map();
+    for (let i = 1; i < rows.length; i++)
+    {
+        const data = rows[i].split(',');
+        const entry = {
+            name: data[0].trim(),
+            department: data[1].trim(),
+            salary: parseInt(data[2].trim()),
+            office: data[3].trim(),
+            isManager: data[4].trim(),
+            skills: data.slice(5).map((skill) => skill.trim()),
+        };
+        // Get dapartment then push into hashmap
+        departmentEmployees[data[1].trim()].push(entry);
+    }
+
+
+    const jsonData = [];
+    jsonData.push(departmentEmployees);
+    // const organization = {organizations :};
+    // Employee Loop
+    // for (let i = 1; i < rows.length; i++) {
+    //   const data = rows[i].split(',');
+    //   const entry = {
+    //     name: data[0].trim(),
+    //     department: data[1].trim(),
+    //     salary: parseInt(data[2].trim()),
+    //     office: data[3].trim(),
+    //     isManager: data[4].trim(),
+    //     skills: data.slice(5).map((skill) => skill.trim()),
+    //   };
+    //   jsonData.push(entry);
+    // }
+
+    // // Department Loop
+    // for (let i = 1; i < rows.length; i++) {
+    // {
+    //     const data = rows[i].split(',');
+    //     const entry2 = {
+    //         department: data[1].trim(),
+    //         managerName : data[1].trim(),
+    //     }
+    // }
   
     return new Response(JSON.stringify(jsonData, null, 2), {
       headers: { 'Content-Type': 'application/json' },
     });
   }
+
   
