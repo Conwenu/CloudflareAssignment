@@ -46,7 +46,7 @@ export async function onRequest(context) {
         }
     }
 
-
+    // Key is department, values is name, managerOfDepartment, employees in Department.
     const departmentOverall = new Map();
     for (const item of departmentSet) {
         const entry = {
@@ -54,7 +54,14 @@ export async function onRequest(context) {
             managerName : departmentManager.get(item),
             employees : departmentEmployees.get(item)
         }
-        departmentOverall[item] = entry;
+        if(departmentOverall[item])
+        {
+            departmentOverall[item].push(entry);
+        }
+        else
+        {
+            departmentOverall[item] = [entry]
+        }
     }
     const final = {organization : {departments: Array.from(departmentOverall.values())}};
 
