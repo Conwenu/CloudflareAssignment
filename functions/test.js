@@ -47,29 +47,18 @@ export async function onRequest(context) {
     }
 
     // Key is department, values is name, managerOfDepartment, employees in Department.
-    const departmentOverall = new Map();
+    let depOverallArray = []
     for (const item of departmentSet) {
         const entry = {
             "name" : item,
             "managerName" : departmentManager.get(item),
             "employees" : departmentEmployees.get(item),
         }
-        if(departmentOverall.has(item))
-        {
-            departmentOverall.get(item).push(entry);
-        }
-        else
-        {
-            departmentEmployees.set(item, [entry]);
-        }
+        depOverallArray.push(entry);
     }
-    console.log(departmentOverall);
-    let depOverallArray = []
-    for(const item of departmentOverall)
-    {
-        depOverallArray.push(item);
-    }
-    const final = {"organization" : {"departments": departmentOverall}};
+
+
+    const final = {"organization" : {"departments": depOverallArray}};
 
 
     const jsonData = [];
