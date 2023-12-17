@@ -34,8 +34,15 @@ export async function onRequest(context) {
             isManager: data[4].trim(),
             skills: data.slice(5).map((skill) => skill.trim()),
         };
-        // Get dapartment then push into hashmap
-        departmentEmployees[data[1].trim()].push(entry);
+        if(departmentEmployees[data[1].trim()])
+        {
+            departmentEmployees[data[1].trim()].push(entry);
+        }
+        else
+        {
+            departmentEmployees[data[1].trim()] = [entry]
+        }
+        
     }
 
 
