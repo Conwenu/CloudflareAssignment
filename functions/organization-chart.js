@@ -2,7 +2,7 @@ addEventListener('fetch', (event) => {
     event.respondWith(handleRequest(event.request));
   });
   
-  async function handleRequest(request) {
+  export async function handleRequest(request) {
     const csvUrl = 'https://hiringassignment-545.pages.dev/general_data.csv'; // Replace with your CSV file URL
     const csvContent = await fetch(csvUrl).then((res) => res.text());
   
