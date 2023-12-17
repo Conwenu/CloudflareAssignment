@@ -3,7 +3,7 @@ export async function onRequest(context) {
     const csvContent = await fetch(csvUrl).then((res) => res.text());
   
     const rows = csvContent.trim().split('\n');
-    const headers = rows[0].split(',').map((header) => header.trim());
+    // const headers = rows[0].split(',').map((header) => header.trim());
     
     // Create set of all departments
     const departmentSet = new Set();
@@ -48,7 +48,7 @@ export async function onRequest(context) {
 
 
     const departmentOverall = new Map();
-    for (const item of mySet) {
+    for (const item of departmentSet) {
         const entry = {
             name : item,
             managerName : departmentManager.get(item),
