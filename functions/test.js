@@ -11,6 +11,7 @@ export async function onRequest(context) {
     {
         departmentSet.add(rows[i].split(',')[1].trim());
     }
+
     // Create Hashmap of Departments with Manager name
     const departmentManager = new Map();
     for (let i = 1; i < rows.length; i++)
@@ -21,6 +22,7 @@ export async function onRequest(context) {
             departmentManager.set(data[1].trim(), data[0].trim());
         }
     }
+
     // Create Hashmap of Departments with Employees
     const departmentEmployees = new Map();
     for (let i = 1; i < rows.length; i++)
@@ -43,12 +45,8 @@ export async function onRequest(context) {
             departmentEmployees[data[1].trim()] = [entry]
         }
     }
-    
 
-    // name of department
-    // department manager
-    // employees in department
-    
+
     const departmentOverall = new Map();
     for (const item of mySet) {
         const entry = {
@@ -58,35 +56,11 @@ export async function onRequest(context) {
         }
         departmentOverall[item] = entry;
     }
-    const final = {organization : {departments: Array.from(departmentOverall.values()) }};
+    const final = {organization : {departments: Array.from(departmentOverall.values())}};
 
 
     const jsonData = [];
     jsonData.push(final);
-    // const organization = {organizations :};
-    // Employee Loop
-    // for (let i = 1; i < rows.length; i++) {
-    //   const data = rows[i].split(',');
-    //   const entry = {
-    //     name: data[0].trim(),
-    //     department: data[1].trim(),
-    //     salary: parseInt(data[2].trim()),
-    //     office: data[3].trim(),
-    //     isManager: data[4].trim(),
-    //     skills: data.slice(5).map((skill) => skill.trim()),
-    //   };
-    //   jsonData.push(entry);
-    // }
-
-    // // Department Loop
-    // for (let i = 1; i < rows.length; i++) {
-    // {
-    //     const data = rows[i].split(',');
-    //     const entry2 = {
-    //         department: data[1].trim(),
-    //         managerName : data[1].trim(),
-    //     }
-    // }
   
     return new Response(JSON.stringify(jsonData, null, 2), {
       headers: { 'Content-Type': 'application/json' },
