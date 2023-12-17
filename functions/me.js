@@ -6,5 +6,7 @@ export function onRequest(context) {
         "interestingFact": "Soccer is my favorite sport.",
         "skills": ["Javascript", "Java", "SpringBoot", "React", "PostgreSQL", "MongoDB", "Express JS", "Node JS", "Docker", "Python", "Lua"],
     };
-    return new Response(entry)
+    return new Response(JSON.stringify(entry, null, 2), {
+        headers: { 'Content-Type': 'application/json' },
+    });
 }
