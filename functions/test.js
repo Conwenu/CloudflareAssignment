@@ -42,7 +42,7 @@ export async function onRequest(context) {
         }
         else
         {
-            departmentEmployees[data[1].trim()] = [entry]
+            departmentEmployees.set(data[1].trim(), [entry]);
         }
     }
 
@@ -60,9 +60,10 @@ export async function onRequest(context) {
         }
         else
         {
-            departmentOverall[item] = [entry]
+            departmentEmployees.set(item, [entry]);
         }
     }
+    console.log(departmentOverall);
     let depOverallArray = []
     for(const item of departmentOverall)
     {
