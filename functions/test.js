@@ -1,8 +1,8 @@
-const ORGANIZATION_KV_NAMESPACE = 'Organizations'; // Replace with your KV namespace name
-const orgKV = KV_NAMESPACE.createBinding(ORGANIZATION_KV_NAMESPACE);
+// const ORGANIZATION_KV_NAMESPACE = 'Organizations'; // Replace with your KV namespace name
+// const orgKV = KV_NAMESPACE.createBinding(ORGANIZATION_KV_NAMESPACE);
 
 export async function onRequest(context) {
-    const csvUrl = 'https://hiringassignment-545.pages.dev/general_data.csv'; // Replace with your CSV file URL
+    const csvUrl = 'https://hiringassignment-545.pages.dev/general_data.csv'; 
     const csvContent = await fetch(csvUrl).then((res) => res.text());
   
     const rows = csvContent.trim().split('\n');
