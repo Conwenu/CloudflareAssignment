@@ -29,12 +29,12 @@ export async function onRequest(context) {
     {
         const data = rows[i].split(',');
         const entry = {
-            name: data[0].trim(),
-            department: data[1].trim(),
-            salary: parseInt(data[2].trim()),
-            office: data[3].trim(),
-            isManager: data[4].trim(),
-            skills: data.slice(5).map((skill) => skill.trim()),
+            "name": data[0].trim(),
+            "department": data[1].trim(),
+            "salary": parseInt(data[2].trim()),
+            "office": data[3].trim(),
+            "isManager": data[4].trim(),
+            "skills": data.slice(5).map((skill) => skill.trim()),
         };
         if(departmentEmployees[data[1].trim()])
         {
@@ -50,9 +50,9 @@ export async function onRequest(context) {
     const departmentOverall = new Map();
     for (const item of departmentSet) {
         const entry = {
-            name : item,
-            managerName : departmentManager.get(item),
-            employees : departmentEmployees.get(item)
+            "name" : item,
+            "managerName" : departmentManager.get(item),
+            "employees" : departmentEmployees.get(item)
         }
         if(departmentOverall[item])
         {
@@ -69,7 +69,7 @@ export async function onRequest(context) {
     {
         depOverallArray.push(item);
     }
-    const final = {organization : {departments: depOverallArray}};
+    const final = {"organization" : {"departments": Array.from(departmentOverall.values())}};
 
 
     const jsonData = [];
