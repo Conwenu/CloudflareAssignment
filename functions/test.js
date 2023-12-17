@@ -36,7 +36,7 @@ export async function onRequest(context) {
             "isManager": data[4].trim(),
             "skills": data.slice(5).map((skill) => skill.trim()),
         };
-        if(departmentEmployees[data[1].trim()])
+        if(departmentEmployees.has(data[1].trim()))
         {
             departmentEmployees[data[1].trim()].push(entry);
         }
@@ -52,9 +52,9 @@ export async function onRequest(context) {
         const entry = {
             "name" : item,
             "managerName" : departmentManager.get(item),
-            "employees" : departmentEmployees.get(item)
+            "employees" : departmentEmployees.get(item),
         }
-        if(departmentOverall[item])
+        if(departmentOverall.has(item))
         {
             departmentOverall[item].push(entry);
         }
@@ -69,7 +69,7 @@ export async function onRequest(context) {
     {
         depOverallArray.push(item);
     }
-    const final = {"organization" : {"departments": departmentOverall.values()}};
+    const final = {"organization" : {"departments": departmentOverall}};
 
 
     const jsonData = [];
