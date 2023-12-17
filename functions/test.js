@@ -8,7 +8,6 @@ export async function onRequest(context) {
     const jsonData = [];
     for (let i = 1; i < rows.length; i++) {
       const data = rows[i].split(',');
-      const obj = {};
       const entry = {
         name: data[0].trim(),
         department: data[1].trim(),
@@ -17,7 +16,7 @@ export async function onRequest(context) {
         isManager: data[4].trim(),
         skills: data.slice(5).map((skill) => skill.trim()),
       };
-      jsonData.push(enrty);
+      jsonData.push(entry);
     }
   
     return new Response(JSON.stringify(jsonData, null, 2), {
