@@ -1,3 +1,6 @@
+const ORGANIZATION_KV_NAMESPACE = 'Organizations'; // Replace with your KV namespace name
+const orgKV = KV_NAMESPACE.createBinding(ORGANIZATION_KV_NAMESPACE);
+
 export async function onRequest(context) {
     const csvUrl = 'https://hiringassignment-545.pages.dev/general_data.csv'; // Replace with your CSV file URL
     const csvContent = await fetch(csvUrl).then((res) => res.text());
@@ -45,8 +48,6 @@ export async function onRequest(context) {
             departmentEmployees.set(data[1].trim(), [entry]);
         }
     }
-
-    // Key is department, values is name, managerOfDepartment, employees in Department.
     let depOverallArray = []
     for (const item of departmentSet) {
         const entry = {
@@ -57,14 +58,9 @@ export async function onRequest(context) {
         depOverallArray.push(entry);
     }
 
-
     const final = {"organization" : {"departments": depOverallArray}};
-
-
-    const jsonData = [];
-    jsonData.push(final);
   
-    return new Response(JSON.stringify(jsonData, null, 2), {
+    return new Response(JSON.stringify(final, null, 2), {
       headers: { 'Content-Type': 'application/json' },
     });
   }
