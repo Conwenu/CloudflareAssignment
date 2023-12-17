@@ -63,7 +63,7 @@ export async function onRequest(context) {
             departmentOverall[item] = [entry]
         }
     }
-    const final = {organization : {departments: Array.from(departmentOverall.values())}};
+    const final = {organization : {departments: departmentOverall}};
 
 
     const jsonData = [];
