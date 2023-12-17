@@ -42,12 +42,27 @@ export async function onRequest(context) {
         {
             departmentEmployees[data[1].trim()] = [entry]
         }
-        
     }
+    
+
+    // name of department
+    // department manager
+    // employees in department
+    
+    const departmentOverall = new Map();
+    for (const item of mySet) {
+        const entry = {
+            name : item,
+            departmentManager : departmentManager.get(item),
+            departmentEmployees : departmentEmployees.get(item)
+        }
+        departmentOverall[item] = entry;
+    }
+    const final = {organization : {departments: Object.values(departmentOverall) }};
 
 
     const jsonData = [];
-    jsonData.push(departmentEmployees);
+    jsonData.push(final);
     // const organization = {organizations :};
     // Employee Loop
     // for (let i = 1; i < rows.length; i++) {
