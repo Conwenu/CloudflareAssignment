@@ -53,12 +53,12 @@ export async function onRequest(context) {
     for (const item of mySet) {
         const entry = {
             name : item,
-            departmentManager : departmentManager.get(item),
-            departmentEmployees : departmentEmployees.get(item)
+            managerName : departmentManager.get(item),
+            employees : departmentEmployees.get(item)
         }
         departmentOverall[item] = entry;
     }
-    const final = {organization : {departments: Object.values(departmentOverall) }};
+    const final = {organization : {departments: Array.from(departmentOverall.values()) }};
 
 
     const jsonData = [];
