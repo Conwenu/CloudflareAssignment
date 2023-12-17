@@ -38,7 +38,7 @@ export async function onRequest(context) {
         };
         if(departmentEmployees.has(data[1].trim()))
         {
-            departmentEmployees[data[1].trim()].push(entry);
+            departmentEmployees.get(data[1].trim()).push(entry);
         }
         else
         {
@@ -56,7 +56,7 @@ export async function onRequest(context) {
         }
         if(departmentOverall.has(item))
         {
-            departmentOverall[item].push(entry);
+            departmentOverall.get(item).push(entry);
         }
         else
         {
