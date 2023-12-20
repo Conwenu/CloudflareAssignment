@@ -3,6 +3,6 @@ addEventListener('fetch', event => {
   })
   
   async function handleRequest(request) {
-    let value = await worker_MY_KV_preview.get('myKey')
+    let value = await MY_KV.get('myKey')
     return new Response(value)
   }
