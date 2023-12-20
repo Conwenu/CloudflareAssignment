@@ -1,6 +1,6 @@
 // const ORGANIZATION_KV_NAMESPACE = 'Organizations'; // Replace with your KV namespace name
 // const orgKV = KV_NAMESPACE.createBinding(ORGANIZATION_KV_NAMESPACE);
-var MY_NAMESPACE = 'worker-Organization';
+var MY_NAMESPACE = MY_KV;
 
 
 export async function onRequest(context) {
@@ -61,8 +61,8 @@ export async function onRequest(context) {
     }
 
     const final = {"organization" : {"departments": depOverallArray}};
-    
-    await MY_KV.put('myKey', JSON.stringify(final))
+
+    await MY_KV2.put('myKey', JSON.stringify(final))
 
     return new Response(JSON.stringify(final, null, 2), {
       headers: { 'Content-Type': 'application/json' },
