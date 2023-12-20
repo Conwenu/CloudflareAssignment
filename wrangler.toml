@@ -1,0 +1,7 @@
+name = "worker"
+type = "javascript"
+account_id = "a30658e358e5a6c636618155808842dc"
+workers_dev = true
+kv_namespaces = [
+  { binding = "MY_KV", id = "fb8ce3f781e9458b8889fdcbc5fc34b3", preview_id = "fb8ce3f781e9458b8889fdcbc5fc34b3" }
+]
