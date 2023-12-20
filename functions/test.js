@@ -62,7 +62,7 @@ export async function onRequest(context) {
 
     const final = {"organization" : {"departments": depOverallArray}};
 
-    await MY_KV.put('myKey', JSON.stringify(final))
+    await MYKV.put('myKey', JSON.stringify(final))
 
     return new Response(JSON.stringify(final, null, 2), {
       headers: { 'Content-Type': 'application/json' },

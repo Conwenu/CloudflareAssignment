@@ -3,6 +3,6 @@ addEventListener('fetch', event => {
   })
   
   async function handleRequest(request) {
-    let value = await MY_KV.get('myKey')
+    let value = await MYKV.get('myKey')
     return new Response(value)
   }
