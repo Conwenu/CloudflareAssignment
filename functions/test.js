@@ -1,6 +1,6 @@
 // const ORGANIZATION_KV_NAMESPACE = 'Organizations'; // Replace with your KV namespace name
 // const orgKV = KV_NAMESPACE.createBinding(ORGANIZATION_KV_NAMESPACE);
-var MY_NAMESPACE = MY_KV2;
+// var MY_NAMESPACE = MY_KV2;
 
 
 export async function onRequest(context) {
