@@ -61,7 +61,7 @@ export async function onRequest(context) {
     }
 
     const final = {"organization" : {"departments": depOverallArray}};
-    await worker-Organization.put('myKey', JSON.stringify(final))
+    await MY_NAMESPACE.put('myKey', JSON.stringify(final))
 
     return new Response(JSON.stringify(final, null, 2), {
       headers: { 'Content-Type': 'application/json' },
